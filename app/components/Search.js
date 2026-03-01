@@ -1,40 +1,36 @@
-'use client'
 import { useState } from 'react'
-import useSWR from 'swr'
-const fetcher = (url)=> fetch(url).then(r=>r.json())
-export default function Search(){
-  const [q,setQ]=useState('')
-  const [coords,setCoords]=useState(null)
-  const {data:weather}=useSWR(coords?`/api/weather?lat=${coords.lat}&lon=${coords.lon}`:null,fetcher)
-  const onSearch=async(e)=>{
+
+export default function Search() {
+  const [q, setQ] = useState('')
+
+  const onSubmit = (e) => {
     e.preventDefault()
-    if(!q) return
-    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5`)
-    const json = await res.json()
-    if(json && json.results && json.results[0]){
-      const r = json.results[0]
-      setCoords({lat:r.latitude,lon:r.longitude, name:r.name})
-    }
+    // simple client-side fetch; real implementation should handle errors/loading
+    if (!q) return
+    fetch(`/api/weather?q=${encodeURIComponent(q)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        console.log('weather', data)
+        alert('Search complete — open console for data (demo)')
+      })
+      .catch((err) => {
+        console.error(err)
+        alert('Failed to fetch weather — check console')
+      })
   }
+
   return (
-    <div>
-      <form onSubmit={onSearch} className="mb-4 flex gap-2">
-        <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search city" className="flex-1 p-2 border rounded" />
-        <button className="bg-sky-600 text-white px-4 rounded">Search</button>
-      </form>
-      {coords && <div className="mb-4">Location: {coords.name} ({coords.lat.toFixed(2)}, {coords.lon.toFixed(2)})</div>}
-      {weather && (
-        <div className="bg-white p-4 rounded shadow">
-          <div className="text-xl font-semibold">Current: {weather.current_weather.temperature}°C</div>
-          <div>Wind: {weather.current_weather.windspeed} km/h</div>
-          <div className="mt-2">Forecast (next days):</div>
-          <ul className="mt-2 list-disc list-inside">
-            {weather.daily.time.map((t,i)=> (
-              <li key={t}>{t}: {weather.daily.temperature_2m_max[i]}° / {weather.daily.temperature_2m_min[i]}°</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    <form onSubmit={onSubmit} className="max-w-2xl">
+      <label className="sr-only">Search city</label>
+      <div className="flex gap-2 items-center">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          className="flex-1 bg-white/5 border border-white/6 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Search city — e.g., Amsterdam"
+        />
+        <button type="submit" className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl font-semibold">Search</button>
+      </div>
+    </form>
   )
 }

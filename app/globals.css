@@ -1,2 +1,21 @@
-:root{--bg:#f8fafc}
-body{margin:0;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg)}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --brand-500: #6366f1;
+}
+
+html,body,#__next{
+  height:100%;
+}
+
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* small utility tweaks */
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
