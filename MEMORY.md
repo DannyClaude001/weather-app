@@ -1,0 +1,15 @@
+- preference: new projects should be private by default — set on 2026-02-26 by Ray (@hideoyoshi).
+- preference: always open a Pull Request automatically when a feature branch passes tests — set on 2026-02-26 by Ray (@hideoyoshi).
+- preference: always spawn a tester agent at the end of any implementation to run npm install/build/dev and validate end-to-end — set on 2026-02-26 by Ray (@hideoyoshi).
+- preference: always push feature branches to remote and open a PR immediately when the branch is ready and tests pass — set on 2026-02-27 by Ray (@hideoyoshi).
+- preference: keep any .env or secrets out of git — set on 2026-02-28 by Ray (@hideoyoshi).
+- preference: run vercel link and vercel deploy with --yes to auto-confirm — set on 2026-02-28 by Ray (@hideoyoshi).
+- preference: never deploy the repository root project named "workspace" — set on 2026-02-28 by Ray (@hideoyoshi).
+- preference: before every deploy, cd inside that project folder and run the build command; if the build succeeds, proceed to deploy — set on 2026-02-28 by Ray (@hideoyoshi).
+- preference: when instructed to act, do not prompt with extra questions; act autonomously and perform the requested action — set on 2026-02-28 by Ray (@hideoyoshi).
+- preference: NEVER deploy to Vercel directly from local; always deploy through GitHub integration so the repository is the single source of truth — set on 2026-02-28 by Ray (@hideoyoshi).
+- note: Assistant GitHub account used for operations: DannyClaude001 (used via gh CLI) — recorded 2026-02-28 by system.
+- preference: respond with as little text as possible in replies when requested — set on 2026-02-28 by Ray (@hideoyoshi).
+- preference: main branch is always the default branch — set on 2026-03-01 by Ray (@hideoyoshi).
+- preference: gitignore standard: always exclude node_modules/, .env*, build/output folders (.next/, dist/, out/), .vercel/, and common OS files — recorded 2026-03-01 by Danny.
+- preference: client-side React components must include "use client" at the top when they use hooks (useState/useEffect/etc.) — recorded 2026-03-01 by assistant.
