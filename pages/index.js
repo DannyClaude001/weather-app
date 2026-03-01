@@ -1,0 +1,1 @@
+export default function Home(){ return ( <main style={{fontFamily:'system-ui',padding:20}}><h1>Weather App (Fallback)</h1><p>The app has been converted to a Pages-based Next.js app as a fallback. Search UI will be added.</p></main> ) }
